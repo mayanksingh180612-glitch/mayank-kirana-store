@@ -1,0 +1,480 @@
+
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mayank Kirana | Gram Bazaar</title>
+<style>
+:root{
+  --green:#176b39;
+  --light:#e9f7df;
+  --yellow:#ffca3a;
+  --cream:#fffdf4;
+  --dark:#193526;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  font-family:Arial,sans-serif;
+  background:#f7f8ef;color:#243328;
+}
+button,input,select{font:inherit}
+button{cursor:pointer}
+.topbar{
+  background:#114c2a;color:white;text-align:center;
+  padding:9px;font-size:13px
+}
+header{
+  background:white;padding:17px 6%;
+  display:flex;align-items:center;justify-content:space-between;
+  gap:15px;position:sticky;top:0;z-index:10;
+  box-shadow:0 3px 15px #173d1815;
+}
+.logo{font-size:24px;font-weight:900;color:var(--green)}
+.logo span{color:#e8a700}
+.logo small{display:block;font-size:11px;letter-spacing:3px;color:#71816f;margin-top:4px}
+.search{display:flex;max-width:480px;flex:1}
+.search input{
+  width:100%;padding:12px;border:1px solid #d9e4d6;
+  border-radius:10px 0 0 10px;outline:none
+}
+.search button{
+  background:var(--green);color:white;border:0;
+  padding:0 17px;border-radius:0 10px 10px 0
+}
+.cart-button{
+  background:var(--yellow);border:0;border-radius:12px;
+  padding:12px 15px;font-weight:bold;color:#263719
+}
+.hero{
+  margin:22px auto;max-width:1200px;width:92%;
+  min-height:300px;border-radius:23px;padding:45px;
+  display:flex;align-items:center;justify-content:space-between;
+  gap:25px;overflow:hidden;
+  background:linear-gradient(120deg,#164e2e,#38864b);
+  color:white;position:relative
+}
+.hero:after{
+  content:"";position:absolute;width:280px;height:280px;
+  border-radius:50%;right:8%;top:15%;
+  background:#ffffff15
+}
+.hero h1{font-size:clamp(32px,5vw,57px);margin:14px 0}
+.hero p{line-height:1.8;color:#e4f6e5;max-width:530px}
+.hero .pill{
+  display:inline-block;background:var(--yellow);color:#2a381e;
+  padding:7px 13px;border-radius:30px;font-size:12px;font-weight:bold
+}
+.hero button{
+  background:var(--yellow);border:0;border-radius:10px;
+  padding:14px 21px;font-weight:bold;margin-top:22px
+}
+.hero-art{
+  font-size:100px;z-index:1;filter:drop-shadow(0 15px 12px #0004);
+  animation:bob 3s ease-in-out infinite
+}
+@keyframes bob{50%{transform:translateY(-10px) rotate(3deg)}}
+.section{max-width:1200px;width:92%;margin:32px auto}
+.heading{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:18px}
+.heading h2{font-size:24px;color:var(--dark)}
+.heading p{font-size:13px;color:#758071;margin-top:6px}
+.categories{
+  display:grid;grid-template-columns:repeat(6,1fr);gap:13px
+}
+.category{
+  background:white;border:1px solid #e6ecdf;border-radius:15px;
+  padding:18px 8px;text-align:center;transition:.2s
+}
+.category:hover,.category.active{
+  border-color:var(--green);background:#eaf6e6;
+  transform:translateY(-3px)
+}
+.category .emoji{font-size:35px;margin-bottom:10px}
+.category strong{font-size:13px}
+.toolbar{display:flex;justify-content:space-between;gap:12px;margin-bottom:20px;flex-wrap:wrap}
+.toolbar select{
+  border:1px solid #d8e2d4;background:white;border-radius:9px;padding:10px
+}
+.products{display:grid;grid-template-columns:repeat(4,1fr);gap:17px}
+.card{
+  background:white;border:1px solid #e6eadf;border-radius:15px;
+  overflow:hidden;transition:.25s
+}
+.card:hover{transform:translateY(-5px);box-shadow:0 12px 30px #234b2015}
+.product-image{
+  height:135px;display:grid;place-items:center;
+  background:linear-gradient(135deg,#f4f8e9,#e5f1db);
+  font-size:65px;position:relative
+}
+.tag{
+  position:absolute;top:10px;left:10px;background:#ffedb0;
+  color:#755100;border-radius:5px;padding:5px 7px;font-size:10px
+}
+.card-info{padding:15px}
+.card h3{font-size:15px;margin-bottom:8px}
+.card .unit{font-size:12px;color:#7b8476;margin-bottom:12px}
+.price{font-size:18px;font-weight:bold;color:var(--green)}
+.old{font-size:11px;text-decoration:line-through;color:#8e958a;margin-left:6px}
+.add{
+  margin-top:13px;width:100%;padding:10px;
+  border:1px solid var(--green);border-radius:8px;
+  background:#eff8e9;color:var(--green);font-weight:bold
+}
+.add:hover{background:var(--green);color:white}
+.benefits{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin-top:35px
+}
+.benefit{
+  background:white;border:1px solid #e5ebdf;border-radius:14px;
+  padding:22px;display:flex;gap:13px;align-items:center
+}
+.benefit span{font-size:30px}
+.benefit h3{font-size:14px;margin-bottom:6px}
+.benefit p{font-size:12px;color:#768172}
+footer{
+  margin-top:45px;background:#123e25;color:white;padding:35px 6%;
+  display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap
+}
+footer p{font-size:13px;color:#d2e2d2;line-height:1.8;margin-top:10px}
+footer h3{font-size:22px}
+footer strong{color:var(--yellow)}
+.overlay{
+  position:fixed;inset:0;background:#0007;z-index:30;display:none
+}
+.overlay.show{display:block}
+.cart-panel{
+  position:fixed;z-index:31;right:-450px;top:0;height:100%;
+  width:min(420px,100%);background:white;padding:22px;
+  transition:right .3s;display:flex;flex-direction:column
+}
+.cart-panel.open{right:0}
+.cart-head{display:flex;justify-content:space-between;align-items:center}
+.close{
+  border:0;background:#eef3e9;border-radius:8px;padding:8px 12px
+}
+.cart-items{overflow:auto;flex:1;margin:20px 0}
+.cart-row{
+  padding:13px 0;border-bottom:1px solid #e4e8df;
+  display:flex;justify-content:space-between;gap:10px;align-items:center
+}
+.cart-row small{display:block;color:#687564;margin-top:5px}
+.qty{display:flex;align-items:center;gap:8px}
+.qty button{border:1px solid #d8e4d1;background:#eff7e9;border-radius:5px;padding:5px 9px}
+.cart-bottom{border-top:1px solid #ddd;padding-top:18px}
+.total{display:flex;justify-content:space-between;font-size:19px;font-weight:bold;margin-bottom:16px}
+.checkout{
+  width:100%;border:0;border-radius:9px;padding:14px;
+  background:var(--green);color:white;font-weight:bold
+}
+.checkout:disabled{opacity:.5;cursor:not-allowed}
+.empty{text-align:center;color:#7c8776;padding:50px 10px}
+.toast{
+  position:fixed;bottom:20px;left:50%;transform:translate(-50%,100px);
+  opacity:0;transition:.3s;background:#153e25;color:white;
+  padding:13px 20px;border-radius:10px;z-index:50;
+  width:max-content;max-width:90%;font-size:13px
+}
+.toast.show{transform:translate(-50%,0);opacity:1}
+@media(max-width:850px){
+ .categories{grid-template-columns:repeat(3,1fr)}
+ .products{grid-template-columns:repeat(3,1fr)}
+ .hero-art{font-size:75px}
+}
+@media(max-width:560px){
+ header{padding:12px 4%;flex-wrap:wrap}
+ .logo{font-size:20px}
+ .logo small{font-size:9px}
+ .search{order:3;flex-basis:100%;max-width:none}
+ .cart-button{padding:10px}
+ .hero{padding:28px 23px;min-height:290px}
+ .hero-art{font-size:57px}
+ .hero h1{font-size:35px}
+ .hero p{font-size:13px}
+ .categories{grid-template-columns:repeat(3,1fr);gap:8px}
+ .category{padding:13px 4px}
+ .category .emoji{font-size:28px}
+ .category strong{font-size:11px}
+ .products{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+ .product-image{height:105px;font-size:49px}
+ .card-info{padding:11px}
+ .card h3{font-size:13px}
+ .price{font-size:16px}
+ .benefits{grid-template-columns:1fr}
+ .section{width:94%}
+ .heading h2{font-size:20px}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">🌾 Apna Gaon, Apni Dukaan — Swagat Hai Mayank Kirana Mein!</div>
+
+<header>
+  <a href="#" class="logo">🛒 MAYANK <span>KIRANA</span><small>GRAM BAZAAR</small></a>
+  <form class="search" id="searchForm">
+    <input id="searchInput" type="search" placeholder="Aata, chawal, tel, sabun search karein...">
+    <button type="submit">🔍</button>
+  </form>
+  <button class="cart-button" onclick="openCart()">🛒 Cart <span id="cartCount">0</span></button>
+</header>
+
+<section class="hero">
+  <div>
+    <span class="pill">🌿 APNA DESI BAZAAR</span>
+    <h1>Gaon Ka Bazaar,<br>Mayank Ke Saath!</h1>
+    <p>Ration se lekar snacks tak, ghar ke roz ke saamaan ek hi jagah. Apni pasand ka saamaan chunein aur apna bill banayein.</p>
+    <button onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">🛍️ Shopping Shuru Karein →</button>
+  </div>
+  <div class="hero-art">🧺🥬</div>
+</section>
+
+<section class="section">
+  <div class="heading">
+    <div><h2>📦 Saamaan Ki Categories</h2><p>Apni zaroorat ka section chunein</p></div>
+  </div>
+  <div class="categories" id="categories"></div>
+</section>
+
+<section class="section" id="products">
+  <div class="heading">
+    <div><h2>🏪 Hamari Dukaan</h2><p>Rozmarra ka saamaan aur ghar ki zarooratein</p></div>
+  </div>
+  <div class="toolbar">
+    <span id="resultCount">Saamaan load ho raha hai...</span>
+    <select id="sortSelect" aria-label="Sort products">
+      <option value="default">Default order</option>
+      <option value="low">Price: Kam se Zyada</option>
+      <option value="high">Price: Zyada se Kam</option>
+      <option value="name">Naam ke hisaab se</option>
+    </select>
+  </div>
+  <div class="products" id="productGrid"></div>
+</section>
+
+<section class="section">
+  <div class="heading"><div><h2>💚 Mayank Kirana Kyun?</h2><p>Gaon ke apne bazaar ka apnapan</p></div></div>
+  <div class="benefits">
+    <div class="benefit"><span>🌾</span><div><h3>Roz Ka Zaroori Saamaan</h3><p>Ration, masale, snacks aur bahut kuch.</p></div></div>
+    <div class="benefit"><span>💰</span><div><h3>Saaf Price List</h3><p>Har item ka daam aur bill dekhein.</p></div></div>
+    <div class="benefit"><span>🏡</span><div><h3>Gaon Ki Apni Dukaan</h3><p>Mayank Kirana — Gram Bazaar.</p></div></div>
+  </div>
+</section>
+
+<footer>
+  <div><h3>🛒 MAYANK <strong>KIRANA</strong></h3><p>Gram Bazaar — Apna Gaon, Apni Dukaan!</p></div>
+  <div><strong>Hamari Categories</strong><p>Ration · Daal · Masale · Snacks<br>Drinks · Dairy · Safai · Personal Care</p></div>
+  <div><strong>Mayank Kirana</strong><p>Owner: Mayank<br>© <span id="year"></span> Mayank Kirana</p></div>
+</footer>
+
+<div class="overlay" id="overlay" onclick="closeCart()"></div>
+<aside class="cart-panel" id="cartPanel" aria-label="Shopping cart">
+  <div class="cart-head"><h2>🛒 Aapka Cart</h2><button class="close" onclick="closeCart()">✕</button></div>
+  <div class="cart-items" id="cartItems"></div>
+  <div class="cart-bottom">
+    <div class="total"><span>Total Bill</span><span id="totalPrice">₹0</span></div>
+    <button class="checkout" id="checkoutBtn" onclick="checkout()">Order Details Banayein</button>
+    <p style="font-size:11px;color:#778071;margin-top:10px">Yeh demo website hai. Asli order ke liye dukaan ki details aur order service jodni hogi.</p>
+  </div>
+</aside>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+const categories = [
+ {name:"Sabhi Saamaan",emoji:"🛍️"},
+ {name:"Ration",emoji:"🌾"},
+ {name:"Daal & Chawal",emoji:"🍚"},
+ {name:"Masale",emoji:"🌶️"},
+ {name:"Snacks",emoji:"🍪"},
+ {name:"Drinks",emoji:"🥤"},
+ {name:"Dairy",emoji:"🥛"},
+ {name:"Safai",emoji:"🧹"},
+ {name:"Personal Care",emoji:"🧴"},
+ {name:"Fruits & Veg",emoji:"🥬"}
+];
+
+const products = [
+ {id:1,name:"Aata",unit:"5 kg pack",price:220,emoji:"🌾",cat:"Ration"},
+ {id:2,name:"Basmati Chawal",unit:"1 kg pack",price:110,emoji:"🍚",cat:"Daal & Chawal"},
+ {id:3,name:"Toor Daal",unit:"1 kg pack",price:150,emoji:"🫘",cat:"Daal & Chawal"},
+ {id:4,name:"Moong Daal",unit:"1 kg pack",price:125,emoji:"🫘",cat:"Daal & Chawal"},
+ {id:5,name:"Sarson Tel",unit:"1 litre",price:165,emoji:"🫗",cat:"Ration"},
+ {id:6,name:"Namak",unit:"1 kg pack",price:25,emoji:"🧂",cat:"Ration"},
+ {id:7,name:"Cheeni",unit:"1 kg pack",price:45,emoji:"🧂",cat:"Ration"},
+ {id:8,name:"Chai Patti",unit:"250 g pack",price:120,emoji:"🍵",cat:"Ration"},
+ {id:9,name:"Haldi Powder",unit:"100 g pack",price:35,emoji:"🟡",cat:"Masale"},
+ {id:10,name:"Lal Mirch",unit:"100 g pack",price:40,emoji:"🌶️",cat:"Masale"},
+ {id:11,name:"Garam Masala",unit:"100 g pack",price:55,emoji:"🫙",cat:"Masale"},
+ {id:12,name:"Biscuit",unit:"Family pack",price:30,emoji:"🍪",cat:"Snacks"},
+ {id:13,name:"Namkeen",unit:"200 g pack",price:40,emoji:"🥨",cat:"Snacks"},
+ {id:14,name:"Chips",unit:"Pack",price:20,emoji:"🍟",cat:"Snacks"},
+ {id:15,name:"Chocolate",unit:"Bar",price:25,emoji:"🍫",cat:"Snacks"},
+ {id:16,name:"Cold Drink",unit:"750 ml",price:45,emoji:"🥤",cat:"Drinks"},
+ {id:17,name:"Packaged Water",unit:"1 litre",price:20,emoji:"💧",cat:"Drinks"},
+ {id:18,name:"Milk",unit:"500 ml",price:32,emoji:"🥛",cat:"Dairy"},
+ {id:19,name:"Butter",unit:"100 g pack",price:60,emoji:"🧈",cat:"Dairy"},
+ {id:20,name:"Dahi",unit:"400 g pack",price:40,emoji:"🥣",cat:"Dairy"},
+ {id:21,name:"Kapde Dhone Ka Powder",unit:"1 kg pack",price:110,emoji:"🧺",cat:"Safai"},
+ {id:22,name:"Dishwash Bar",unit:"1 piece",price:20,emoji:"🧽",cat:"Safai"},
+ {id:23,name:"Floor Cleaner",unit:"500 ml",price:95,emoji:"🧴",cat:"Safai"},
+ {id:24,name:"Bath Soap",unit:"1 piece",price:35,emoji:"🧼",cat:"Personal Care"},
+ {id:25,name:"Shampoo",unit:"Bottle",price:85,emoji:"🧴",cat:"Personal Care"},
+ {id:26,name:"Toothpaste",unit:"Pack",price:65,emoji:"🪥",cat:"Personal Care"},
+ {id:27,name:"Tamatar",unit:"500 g",price:25,emoji:"🍅",cat:"Fruits & Veg"},
+ {id:28,name:"Aloo",unit:"1 kg",price:30,emoji:"🥔",cat:"Fruits & Veg"},
+ {id:29,name:"Pyaaz",unit:"1 kg",price:35,emoji:"🧅",cat:"Fruits & Veg"},
+ {id:30,name:"Ghee",unit:"500 ml",price:300,emoji:"🫙",cat:"Ration"}
+];
+
+let activeCategory = "Sabhi Saamaan";
+let query = "";
+let cart = {};
+
+const grid = document.getElementById("productGrid");
+const categoryBox = document.getElementById("categories");
+
+function money(value) {
+  return "₹" + value.toLocaleString("en-IN");
+}
+
+function renderCategories() {
+  categoryBox.innerHTML = categories.map(c => `
+    <button class="category ${activeCategory===c.name?"active":""}"
+      onclick="setCategory('${c.name}')">
+      <div class="emoji">${c.emoji}</div>
+      <strong>${c.name}</strong>
+    </button>
+  `).join("");
+}
+
+function setCategory(name) {
+  activeCategory = name;
+  renderCategories();
+  renderProducts();
+  document.getElementById("products").scrollIntoView({behavior:"smooth"});
+}
+
+function renderProducts() {
+  let list = products.filter(p =>
+    (activeCategory==="Sabhi Saamaan" || p.cat===activeCategory) &&
+    (p.name.toLowerCase().includes(query) || p.cat.toLowerCase().includes(query))
+  );
+
+  const sort = document.getElementById("sortSelect").value;
+  if(sort==="low") list.sort((a,b)=>a.price-b.price);
+  if(sort==="high") list.sort((a,b)=>b.price-a.price);
+  if(sort==="name") list.sort((a,b)=>a.name.localeCompare(b.name));
+
+  document.getElementById("resultCount").textContent = list.length+" items mile";
+
+  if(!list.length) {
+    grid.innerHTML = '<div class="empty" style="grid-column:1/-1">😕 Koi saamaan nahi mila. Doosra naam search karein.</div>';
+    return;
+  }
+
+  grid.innerHTML = list.map(p=>`
+    <article class="card">
+      <div class="product-image">
+        <span class="tag">${p.cat}</span>
+        <span>${p.emoji}</span>
+      </div>
+      <div class="card-info">
+        <h3>${p.name}</h3>
+        <div class="unit">${p.unit}</div>
+        <div class="price">${money(p.price)}</div>
+        <button class="add" onclick="addToCart(${p.id})">
+          ${cart[p.id] ? "✓ Cart mein hai ("+cart[p.id]+")" : "＋ Add to Cart"}
+        </button>
+      </div>
+    </article>
+  `).join("");
+}
+
+function addToCart(id) {
+  cart[id] = (cart[id] || 0) + 1;
+  updateCart();
+  renderProducts();
+  const p=products.find(x=>x.id===id);
+  showToast(p.name+" cart mein add ho gaya!");
+}
+
+function changeQty(id,amount) {
+  cart[id]=(cart[id]||0)+amount;
+  if(cart[id]<=0) delete cart[id];
+  updateCart();
+  renderProducts();
+}
+
+function updateCart() {
+  const count=Object.values(cart).reduce((a,b)=>a+b,0);
+  document.getElementById("cartCount").textContent=count;
+
+  const items=products.filter(p=>cart[p.id]);
+  const total=items.reduce((sum,p)=>sum+p.price*cart[p.id],0);
+  document.getElementById("totalPrice").textContent=money(total);
+  document.getElementById("checkoutBtn").disabled=!items.length;
+
+  document.getElementById("cartItems").innerHTML=items.length ? items.map(p=>`
+    <div class="cart-row">
+      <div><strong>${p.emoji} ${p.name}</strong><small>${money(p.price)} × ${cart[p.id]}</small></div>
+      <div class="qty">
+        <button onclick="changeQty(${p.id},-1)" aria-label="Decrease quantity">−</button>
+        <span>${cart[p.id]}</span>
+        <button onclick="changeQty(${p.id},1)" aria-label="Increase quantity">+</button>
+      </div>
+    </div>
+  `).join("") : '<div class="empty">🛒<br><br>Aapka cart abhi khaali hai.</div>';
+}
+
+function openCart() {
+  document.getElementById("cartPanel").classList.add("open");
+  document.getElementById("overlay").classList.add("show");
+}
+
+function closeCart() {
+  document.getElementById("cartPanel").classList.remove("open");
+  document.getElementById("overlay").classList.remove("show");
+}
+
+function checkout() {
+  const items=products.filter(p=>cart[p.id]);
+  if(!items.length) return;
+
+  const total=items.reduce((sum,p)=>sum+p.price*cart[p.id],0);
+  const summary=items.map(p=>`${p.name} x ${cart[p.id]} = ${money(p.price*cart[p.id])}`).join("\n");
+
+  alert("MAYANK KIRANA — ORDER SUMMARY\n\n"+summary+
+    "\n\nTotal: "+money(total)+
+    "\n\nYeh demo bill hai. Order confirm nahi hua hai.\nDukaan ka phone number aur delivery details jodne ke baad real order liye ja sakte hain.");
+}
+
+function showToast(message) {
+  const toast=document.getElementById("toast");
+  toast.textContent=message;
+  toast.classList.add("show");
+  clearTimeout(window.toastTimer);
+  window.toastTimer=setTimeout(()=>toast.classList.remove("show"),2200);
+}
+
+document.getElementById("searchForm").addEventListener("submit",e=>{
+  e.preventDefault();
+  query=document.getElementById("searchInput").value.trim().toLowerCase();
+  activeCategory="Sabhi Saamaan";
+  renderCategories();
+  renderProducts();
+  document.getElementById("products").scrollIntoView({behavior:"smooth"});
+});
+
+document.getElementById("searchInput").addEventListener("input",e=>{
+  query=e.target.value.trim().toLowerCase();
+  renderProducts();
+});
+
+document.getElementById("sortSelect").addEventListener("change",renderProducts);
+document.getElementById("year").textContent=new Date().getFullYear();
+
+renderCategories();
+renderProducts();
+updateCart();
+</script>
+</body>
+</html>
